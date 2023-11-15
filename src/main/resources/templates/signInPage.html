@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign in!</title>
+
+</head>
+<body>
+
+<h1>Sign in!</h1>
+
+<form action="#" th:action="@{/signInPage/}" th:object="${user}" method="post">
+
+    <p>First Name: <input type="text" th:field="*{firstName}" /></p>
+    <p>Last Name: <input type="text" th:field="*{lastName}" /></p>
+    <p>Email: <input type="text" th:field="*{email}" /></p>
+    <p>Password: <input type="text" th:field="*{password}" /></p>
+
+    <button type="submit">Submit</button>
+</form>
+
+
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+
+
+        body{
+
+        background-image: url("https://cdn.wallpapersafari.com/80/94/AC21PJ.jpg");
+        background-size: cover;
+        height:100vh;
+
+
+
+          }
+    </style>
+
+
+</head>
+
+<body>
+
+<p th:if="${loginError}" class="error">Wrong user or password</p>
+<form th:action="@{/loginPage/}" method="post">
+    <input type="text" id="username" name="username" autofocus="autofocus" placeholder="Username"  class="form-control" style="width: 250px; position: absolute; top: 35%; left: 45%" /> <br />
+    <input  type="password" id="password" name="password" placeholder="Password" class="form-control" style="width: 250px; position: absolute; top: 42%; left: 45%"/> <br />
+    <input type="submit" class="btn btn-primary" style="color: black; font-weight: bold; position: absolute; top: 47%; left: 50%" value="Log in" />
+</form>
+
+
+
+
+<form th:action="@{/signInPage/}" method="get">
+    <button type="submit" class="btn btn-success" style="color: black; font-weight: bold; position: absolute; top: 52%; left: 955px"  >Sign in!</button>
+</form>
+
+
+</body>
+</html>
