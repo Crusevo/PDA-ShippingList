@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Home Page</title>
@@ -7,6 +7,19 @@
 <body>
 
 <h1>Home Page</h1>
+
+
+<form th:action="@{/userPage/}" method="get">
+    <button type="submit" class="btn btn-success" style="font-weight: bold; position: absolute; top: 45%; left: 890px"  >Click here to userPage!</button>
+</form>
+
+<form th:action="@{/projectPage/}" method="get">
+    <button type="submit" class="btn btn-success" style="font-weight: bold; position: absolute; top: 55%; left: 890px"  >Click here to adminPage!</button>
+</form>
+
+<form th:action="@{/addUserToProjectPage/}" method="get">
+    <button type="submit" class="btn btn-success" style="font-weight: bold; position: absolute; top: 67%; left: 890px"  >Click here to addUserToProject!</button>
+</form>
 
 </body>
 </html>

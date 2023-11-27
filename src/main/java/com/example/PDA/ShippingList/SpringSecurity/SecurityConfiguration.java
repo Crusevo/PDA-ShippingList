@@ -1,5 +1,6 @@
 package com.example.PDA.ShippingList.SpringSecurity;
 
+import com.example.PDA.ShippingList.PageController.HomePageController;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,17 +17,6 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfiguration {
 
-
-//    @Bean
-//    public UserDetailsService userDetailsService() {
-//        return new InMemoryUserDetailsManager(
-//                User.withDefaultPasswordEncoder()
-//                        .username("user")
-//                        .password("password")
-//                        .roles("USER")
-//                        .build()
-//        );
-//    }
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder(){
@@ -54,13 +44,18 @@ public class SecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .requestMatchers("/homePage/")
-                .authenticated()
+                .requestMatchers("/homePage/").authenticated()
+                .requestMatchers("/userPage/").hasAuthority("USER")
+                .requestMatchers("/projectPage/").hasAuthority("ADMIN")
                 .and()
                 .formLogin()
                 .loginPage("/loginPage/")
                 .permitAll()
-                .defaultSuccessUrl("/homePage/", true);
+                .defaultSuccessUrl("/homePage/", true)
+                .and()
+                .logout();
+
+
 
 
         return http.build();

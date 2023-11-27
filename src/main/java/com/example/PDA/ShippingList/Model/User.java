@@ -5,10 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
-@NoArgsConstructor
 @AllArgsConstructor
 @Data
 public class User {
@@ -28,5 +29,13 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> userRoles;
 
+    @OneToMany(mappedBy = "user")
+    private Set<Project> projectsList;
+
+
+    public User() {
+        this.userRoles = new HashSet<>();
+        this.projectsList = new HashSet<>();
+    }
 
 }

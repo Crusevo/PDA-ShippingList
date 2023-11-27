@@ -1,4 +1,4 @@
-package com.example.PDA.ShippingList.RestController;
+package com.example.PDA.ShippingList.PageController;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class SuccessPageController {
 
     @GetMapping("/successPage/")
-    public String successPage(){
+    public String getSuccessPage(){
         return "successPage";
     }
 

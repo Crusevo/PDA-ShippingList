@@ -1,10 +1,13 @@
 package com.example.PDA.ShippingList.Service;
 
+import com.example.PDA.ShippingList.Model.Role;
 import com.example.PDA.ShippingList.Model.User;
 import com.example.PDA.ShippingList.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Set;
 
 @Service
 public class UserService {
@@ -15,11 +18,6 @@ public class UserService {
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public void addUserToDataBase(User user){
-        userRepository.saveAndFlush(user);
-    }
-
-
     public void findAllUsers() {
         userRepository.findAll();
     }
@@ -27,8 +25,9 @@ public class UserService {
     public void saveUser(User user) {
 
         String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
-
         user.setPassword(encodedPassword);
+
+        Set<Role> userRoles = user.getUserRoles();
 
         userRepository.saveAndFlush(user);
 

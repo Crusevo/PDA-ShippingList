@@ -4,22 +4,25 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-public class Role {
+@NoArgsConstructor
+@AllArgsConstructor
+public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long itemId;
 
-    @NotNull()
-    @NotBlank()
-    private String roleName;
+    private String itemName;
+
+    private String groupNumber;
+
+
 
 
 }

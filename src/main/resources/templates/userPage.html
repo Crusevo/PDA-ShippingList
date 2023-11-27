@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>User Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+    <style>
+        table {
+          border-collapse: collapse;
+          width: 50%;
+        }
+
+        th, td {
+          padding: 8px;
+          text-align: left;
+          border-bottom: 1px solid #ddd;
+        }
+        th{
+        background-color: #04AA6D;
+
+        }
+        tr:hover {background-color: light-blue;}
+    </style>
+
+
+</head>
+
+<body>
+
+<h1>User Page</h1>
+
+<table>
+
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Project Number</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="project : ${allProjects}">
+        <td  th:text="${project.projectId}"></td>
+        <td th:text="${project.projectNumber}"></td>
+    </tr>
+    </tbody>
+
+</table>
+
+
+
+</body>
+</html>

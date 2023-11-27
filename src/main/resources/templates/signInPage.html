@@ -9,16 +9,30 @@
 
 <h1>Sign in!</h1>
 
-<form action="#" th:action="@{/signInPage/}" th:object="${user}" method="post">
+<form action="#" th:action="@{/signInPage/}" th:object="${user}"  method="post">
 
-    <p>First Name: <input type="text" th:field="*{firstName}" /></p>
-    <p>Last Name: <input type="text" th:field="*{lastName}" /></p>
-    <p>Email: <input type="text" th:field="*{email}" /></p>
-    <p>Password: <input type="text" th:field="*{password}" /></p>
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" th:field="*{firstName}" required />
+    <br/>
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" th:field="*{lastName}" required />
+    <br/>
+    <label for="email">Email:</label>
+    <input type="text" id="email" th:field="*{email}" required />
+    <br/>
+    <label for="password">Password:</label>
+    <input type="text" id="password" th:field="*{password}" required />
+    <br/>
+
+
+    <label for="role">Select Role:</label>
+    <select id="role" name="role" required>
+        <option th:each="role : ${allRoles}" th:value="${role.roleName}" th:text="${role.roleName}"></option>
+    </select>
+    <br/>
 
     <button type="submit">Submit</button>
 </form>
-
 
 
 </body>

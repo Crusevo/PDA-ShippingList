@@ -1,14 +1,53 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <title>Success Page</title>
+
+
+    <style>
+
+        #successImage{
+        position:absolute;
+        top: 20%;
+        left: 45%;
+        }
+
+        h1{
+        position:absolute;
+        top: 10%;
+        left: 35%;
+        font-family: Apple Chancery, cursive;
+        font-size: 50px;
+
+        }
+
+        body{
+        background-image: url('https://blog.udemy.com/wp-content/uploads/2014/04/bigstock-Vector-abstract-background-com-40902397.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        }
+
+
+
+    </style>
+
+
+
 </head>
 <body>
-<h1>Success</h1>
+
+<h1>You registred sucesfully!</h1>
+
+<img id="successImage" src="https://rlv.zcache.com/green_check_mark_symbol_cutout-r28293db12d9f4d46b0fbc2b9a2547738_x7saw_8byvr_540.jpg" width="200" height="200"  alt="Paris">
+
 
 <form th:action="@{/loginPage/}" method="get">
-    <button type="submit" class="btn btn-success" style="color: black; font-weight: bold; position: absolute; top: 52%; left: 955px"  >Back to login Page</button>
+    <button type="submit" class="btn btn-success" style="font-weight: bold; position: absolute; top: 45%; left: 890px"  >Click here to login!</button>
 </form>
 
 

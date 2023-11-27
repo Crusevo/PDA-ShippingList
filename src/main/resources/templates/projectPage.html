@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Admin Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+    <style>
+        table {
+          border-collapse: collapse;
+          width: 50%;
+        }
+
+        th, td {
+          padding: 8px;
+          text-align: left;
+          border-bottom: 1px solid #ddd;
+        }
+        th{
+        background-color: #04AA6D;
+
+        }
+        tr:hover {background-color: light-blue;}
+    </style>
+
+
+
+</head>
+<body>
+
+<h1>Project page</h1>
+
+<form action="#" th:action="@{/projectPage/}" th:object="${project}"  method="post">
+
+    <label for="projectNumber">Project Number:</label>
+    <input type="text" id="projectNumber" th:field="*{projectNumber}" required />
+    <br/>
+
+    <button type="submit">Submit</button>
+</form>
+
+
+<table>
+
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Project Number</th>
+        <th>User FirstName</th>
+        <th>User LastName</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="project : ${allProjects}">
+        <td th:text="${project.projectId}"></td>
+        <td th:text="${project.projectNumber}"></td>
+        <td th:text="${!(project.user == null) ? project.user.firstName : ''}"></td>
+        <td th:text="${!(project.user == null) ? project.user.lastName : ''}"></td>
+
+
+    </tr>
+    </tbody>
+
+</table>
+
+</body>
+</html>
