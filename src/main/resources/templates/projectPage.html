@@ -44,6 +44,29 @@
 </form>
 
 
+<form th:action="@{/addUserToProject/}" method="post">
+    <label for="userId">Select User:</label>
+    <select id="userId" name="userId">
+        <option th:each="user : ${allUsers}" th:value="${user.id}" th:text="${user.firstName}"></option>
+    </select>
+    <br/>
+
+    <label for="projectId">Select Project:</label>
+    <select id="projectId" name="projectId">
+        <option th:each="project : ${allProjects}" th:value="${project.projectId}" th:text="${project.projectNumber}"></option>
+    </select>
+    <br/>
+
+    <button type="submit">Add User to Project</button>
+</form>
+
+
+
+
+
+
+
+
 <table>
 
     <thead>

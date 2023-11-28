@@ -13,8 +13,7 @@ public class UserRestController {
 
     @Autowired
     UserService userService;
-
-
+    
     @GetMapping("/getUsers/")
     public void findAllUsers() {
         userService.findAllUsers();

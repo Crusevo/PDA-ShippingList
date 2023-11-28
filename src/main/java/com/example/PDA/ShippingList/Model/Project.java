@@ -17,7 +17,7 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long projectId;
 
-    private int projectNumber;
+    private String projectNumber;
 
     @ManyToOne()
     @JoinTable(name = "User_Projects", joinColumns = @JoinColumn(name = "Project_Id"),
