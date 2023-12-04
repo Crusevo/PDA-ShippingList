@@ -40,6 +40,8 @@
     <tr>
         <th>ID</th>
         <th>Project Number</th>
+        <th></th>
+
     </tr>
     </thead>
 
@@ -47,11 +49,13 @@
     <tr th:each="project : ${allProjects}">
         <td  th:text="${project.projectId}"></td>
         <td th:text="${project.projectNumber}"></td>
+        <td> <a th:href="@{/addItemToProject/(projectId=${project.projectId}, projectNumber=${project.projectNumber})}">Zobacz szczegóły</a> </td>
     </tr>
     </tbody>
 
 </table>
 
+<div th:include="userData"></div>
 
 
 </body>

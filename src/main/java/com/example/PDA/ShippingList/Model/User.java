@@ -12,6 +12,7 @@ import java.util.Set;
 @Entity
 @AllArgsConstructor
 @Data
+@NoArgsConstructor
 public class User {
 
     @Id
@@ -27,15 +28,13 @@ public class User {
             fetch = FetchType.EAGER)
     @JoinTable(name = "User_Role", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> userRoles;
+    private Set<Role> userRoles = new HashSet<>();
 
     @OneToMany(mappedBy = "user")
-    private Set<Project> projectsList;
+    private Set<Project> projectsList = new HashSet<>();
 
 
-    public User() {
-        this.userRoles = new HashSet<>();
-        this.projectsList = new HashSet<>();
-    }
+
+
 
 }
