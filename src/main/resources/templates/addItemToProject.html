@@ -13,5 +13,40 @@
 <p>ID rekordu: <span th:text="${projectId}"></span></p>
 <p>ProjectNumber rekordu: <span th:text="${projectNumber}"></span></p>
 
+
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Project Number</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="item : ${itemList}">
+        <td th:text="${item.itemId}"></td>
+        <td th:text="${item.itemName}"></td>
+    </tr>
+    </tbody>
+</table>
+
+
+
+<form action="#" th:action="@{/addItemToProject/}" th:object="${item}"  method="post">
+
+    <label for="itemName">Item name:</label>
+    <input type="text" id="itemName" th:field="*{itemName}" required />
+    <br/>
+
+    <label for="groupNumber">Item name:</label>
+    <input type="text" id="groupNumber" th:field="*{groupNumber}" required />
+    <br/>
+
+    <button type="submit">Submit</button>
+</form>
+
+
+
 </body>
 </html>

@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -29,7 +30,7 @@ public class Project {
             fetch = FetchType.EAGER)
     @JoinTable(name = "Project_Item", joinColumns = @JoinColumn(name = "Project_Id"),
             inverseJoinColumns = @JoinColumn(name = "Item_Id"))
-    private List<Item> itemList;
+    private List<Item> itemList = new ArrayList<>();
 
 
 

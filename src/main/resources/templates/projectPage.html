@@ -34,6 +34,10 @@
 
 <h1>Project page</h1>
 
+<div th:include="userData"></div>
+
+
+
 <form action="#" th:action="@{/projectPage/}" th:object="${project}"  method="post">
 
     <label for="projectNumber">Project Number:</label>
@@ -60,11 +64,6 @@
     <button type="submit">Add User to Project</button>
 </form>
 
-<div th:include="userData"></div>
-
-
-
-
 
 
 <table>
@@ -84,7 +83,6 @@
         <td th:text="${project.projectNumber}"></td>
         <td th:text="${!(project.user == null) ? project.user.firstName : ''}"></td>
         <td th:text="${!(project.user == null) ? project.user.lastName : ''}"></td>
-
 
     </tr>
     </tbody>
