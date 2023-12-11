@@ -25,9 +25,7 @@ public class UserService {
 
     public void saveUser(User user) {
 
-        if(userRepository.findByLastName(user.getLastName()).isEmpty() &&
-                userRepository.findByFirstName(user.getFirstName()).isEmpty() &&
-                userRepository.findByEmail(user.getEmail()).isEmpty()){
+        if(userRepository.findByEmail(user.getEmail()).isEmpty()){
 
                 String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
                 user.setPassword(encodedPassword);

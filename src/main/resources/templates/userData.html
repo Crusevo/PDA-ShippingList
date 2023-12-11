@@ -1,8 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
     <title>Title</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
 
     <style>
         #userData{
@@ -42,6 +49,12 @@
     <p>Last Name: <span th:text="${#authentication.principal.lastName}"></span></p>
 
 </div>
+
+
+<form th:action="@{/logoutPage/}" method="get">
+    <button type="submit" class="btn btn-success" style="font-weight: bold; position: absolute; top: 90px; right: 25px"  >Logout!</button>
+</form>
+
 
 </body>
 </html>

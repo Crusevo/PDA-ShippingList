@@ -1,5 +1,6 @@
 package com.example.PDA.ShippingList.SpringSecurity;
 
+import com.example.PDA.ShippingList.ExceptionHandler.CustomAccessDeniedHandler;
 import com.example.PDA.ShippingList.PageController.HomePageController;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -7,15 +8,17 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.AccessDeniedHandler;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfiguration {
+public class SecurityConfiguration{
 
 
     @Bean
@@ -53,13 +56,26 @@ public class SecurityConfiguration {
                 .permitAll()
                 .defaultSuccessUrl("/homePage/", true)
                 .and()
-                .logout();
-
-
+                .exceptionHandling().accessDeniedHandler(accessDeniedHandler())
+                .and()
+                .logout()
+                .logoutUrl("/logoutPage/")
+                .logoutSuccessUrl("/loginPage/")
+                .permitAll();
 
 
         return http.build();
     }
+
+    @Bean
+    public AccessDeniedHandler accessDeniedHandler() {
+        return new CustomAccessDeniedHandler();
+    }
+
+
+
+
+
 }
 
 

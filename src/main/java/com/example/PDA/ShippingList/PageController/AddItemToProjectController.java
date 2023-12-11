@@ -7,15 +7,13 @@ import com.example.PDA.ShippingList.Repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @Controller
+@SessionAttributes({"selectedProject","projectId","projectNumber"})
 public class AddItemToProjectController {
 
 
@@ -49,9 +47,9 @@ public class AddItemToProjectController {
 
         Project selectedProject = (Project) model.getAttribute("selectedProject");
 
-//        selectedProject.getItemList().add(item);
+        selectedProject.getItemList().add(item);
 
-//        projectRepository.save(selectedProject);
+        projectRepository.save(selectedProject);
 
         itemRepository.save(item);
 
