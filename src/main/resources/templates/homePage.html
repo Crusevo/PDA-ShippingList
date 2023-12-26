@@ -8,6 +8,8 @@
 
 <h1>Home Page</h1>
 
+<div th:include="userData"></div>
+
 
 <form th:action="@{/userPage/}" method="get">
     <button type="submit" class="btn btn-success" style="font-weight: bold; position: absolute; top: 45%; left: 890px"  >Click here to userPage!</button>
@@ -19,7 +21,7 @@
 
 
 
-<div th:include="userData"></div>
+
 
 
 

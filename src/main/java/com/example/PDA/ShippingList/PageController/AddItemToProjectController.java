@@ -36,22 +36,27 @@ public class AddItemToProjectController {
         List<Item> itemList = selectedProject.getItemList();
         model.addAttribute("itemList", itemList);
 
-
-
         return "addItemToProject";
     }
 
 
     @PostMapping("/addItemToProject/")
-    public void postAddItemToProject(@ModelAttribute("item") Item item, Model model){
+    public String postAddItemToProject(@ModelAttribute("item") Item item, Model model){
 
         Project selectedProject = (Project) model.getAttribute("selectedProject");
+        Long projectId = (Long) model.getAttribute("projectId");
+        String projectNumber = (String) model.getAttribute("projectNumber");
+
+
 
         selectedProject.getItemList().add(item);
 
         projectRepository.save(selectedProject);
 
         itemRepository.save(item);
+
+        return "redirect:/addItemToProject/?projectId=" + projectId + "&projectNumber=" + projectNumber;
+
 
 
     }

@@ -1,38 +1,96 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
     <title>Sign in!</title>
 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+<style>
+
+    #copyright{
+    position: absolute;
+    width: 100%;
+    top: 90%;
+    }
+
+</style>
+
+
+
 </head>
+
 <body>
 
-<h1>Sign in!</h1>
-
-<form action="#" th:action="@{/signInPage/}" th:object="${user}"  method="post">
-
-    <label for="firstName">First Name:</label>
-    <input type="text" id="firstName" th:field="*{firstName}" required />
-    <br/>
-    <label for="lastName">Last Name:</label>
-    <input type="text" id="lastName" th:field="*{lastName}" required />
-    <br/>
-    <label for="email">Email:</label>
-    <input type="text" id="email" th:field="*{email}" required />
-    <br/>
-    <label for="password">Password:</label>
-    <input type="text" id="password" th:field="*{password}" required />
-    <br/>
+<h1 id="mainText" style="position: relative; top:10%; left: 50%; margin-bottom: 60px; font-family: 'Brush Script MT', cursive;">Sign in!</h1>
 
 
-    <label for="role">Select Role:</label>
-    <select id="role" name="role" required>
-        <option th:each="role : ${allRoles}" th:value="${role.roleName}" th:text="${role.roleName}"></option>
-    </select>
-    <br/>
 
-    <button type="submit">Submit</button>
-</form>
+<section >
+    <div class="container-fluid h-custom">
+        <div  class="row d-flex justify-content-center align-items-center h-100">
+            <div  class="col-md-9 col-lg-6 col-xl-5">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                     class="img-fluid" alt="Sample image">
+            </div>
+            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+
+                <form id="singInForm" action="#" th:action="@{/signInPage/}" th:object="${user}"  method="post">
+
+                    <!-- FirstName input -->
+                    <div>
+                        <input type="text" id="firstName" class="form-control form-control-lg"
+                               placeholder="Enter First Name" th:field="*{firstName}" required />
+                        <label class="form-label" for="firstName" >First Name</label>
+                    </div>
+
+                    <!-- LastName input -->
+                    <div>
+                        <input type="text" id="lastName" class="form-control form-control-lg"
+                               placeholder="Enter Last Name" th:field="*{lastName}" required />
+                        <label class="form-label" for="lastName" >Last Name</label>
+                    </div>
+
+                    <!-- Email input -->
+                    <div>
+                        <input type="email" id="email" class="form-control form-control-lg"
+                               placeholder="Enter a valid email address" th:field="*{email}" required />
+                        <label class="form-label" for="email" >Email address</label>
+                    </div>
+
+                    <!-- Password input -->
+                    <div>
+                        <input type="password" id="password" class="form-control form-control-lg"
+                               placeholder="Enter password" th:field="*{password}" required />
+                        <label class="form-label" for="password">Password</label>
+                    </div>
+
+                    <div >
+                    <label for="role">Select Role:</label>
+                    <select  style="margin-top: 20px; " id="role" name="role" required>
+                        <option th:each="role : ${allRoles}" th:value="${role.roleName}" th:text="${role.roleName}"></option>
+                    </select>
+                    <br/>
+
+                    <button style="margin-top: 20px" class="btn btn-primary" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="copyright"
+            class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
+        <!-- Copyright -->
+        <div  class="text-white mb-3 mb-md-0">
+            Copyright © 2024. All rights reserved.
+        </div>
+    </div>
+</section>
 
 
 

@@ -7,33 +7,54 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <title>Add Item To Project</title>
+
+
+    <style>
+        table {
+          border-collapse: collapse;
+          width: 50%;
+        }
+
+        th, td {
+          padding: 8px;
+          text-align: left;
+          border-bottom: 1px solid #ddd;
+        }
+        th{
+        background-color: #04AA6D;
+
+        }
+        tr:hover {background-color: light-blue;}
+    </style>
+
 </head>
 <body>
+
+<div th:include="userData"></div>
 
 <p>ID rekordu: <span th:text="${projectId}"></span></p>
 <p>Project Number: <span th:text="${projectNumber}"></span></p>
 
 
-
 <table>
     <thead>
     <tr>
-        <th>ID</th>
-        <th>Project Number</th>
+        <th>Item Name</th>
+        <th>Group Number</th>
     </tr>
     </thead>
 
     <tbody>
     <tr th:each="item : ${itemList}">
-        <td th:text="${item.itemId}"></td>
         <td th:text="${item.itemName}"></td>
+        <td th:text="${item.groupNumber}"></td>
     </tr>
     </tbody>
 </table>
 
 
 
-<form action="#" th:action="@{/addItemToProject/}" th:object="${item}"  method="post">
+<form action="#" th:action="@{/addItemToProject/}" th:object="${item}" method="post" onsubmit="return refreshPage()">
 
     <label for="itemName">Item name:</label>
     <input type="text" id="itemName" th:field="*{itemName}" required />
@@ -45,7 +66,6 @@
 
     <button type="submit">Submit</button>
 </form>
-
 
 
 </body>
