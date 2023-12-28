@@ -1,8 +1,53 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
+
     <title>Home Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+        body  {
+          background-image: url("https://img.freepik.com/free-vector/white-minimal-hexagons-background_79603-1452.jpg?w=1380&t=st=1703696819~exp=1703697419~hmac=15071a1700fa7cb45cd0a66976219684be8de5c633323c28df5c619975a827f8");
+          background-repeat: no-repeat;
+          background-size: cover;
+        }
+
+        table.customTable {
+  width: 78%;
+  background-color: #FFFFFF;
+  border-collapse: collapse;
+  border-width: 2px;
+  border-color: #000000;
+  border-style: solid;
+  color: #000000;
+  margin-left: 20px;
+
+}
+
+
+
+table.customTable td, table.customTable th {
+  border-width: 2px;
+  border-color: #000000;
+  border-style: solid;
+  padding: 5px;
+  border-top-left-radius: 30px;
+}
+
+table.customTable thead {
+  background-color: #BCC5D1;
+
+
+}
+
+    </style>
+
+
+
 </head>
 <body>
 
@@ -11,13 +56,28 @@
 <div th:include="userData"></div>
 
 
-<form th:action="@{/userPage/}" method="get">
-    <button type="submit" class="btn btn-success" style="font-weight: bold; position: absolute; top: 45%; left: 890px"  >Click here to userPage!</button>
-</form>
+<table class="customTable">
 
-<form th:action="@{/projectPage/}" method="get">
-    <button type="submit" class="btn btn-success" style="font-weight: bold; position: absolute; top: 55%; left: 890px"  >Click here to adminPage!</button>
-</form>
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Project Number</th>
+        <th scope="col">User FirstName</th>
+        <th scope="col">User LastName</th>
+    </tr>
+
+    </thead>
+    <tbody>
+    <tr th:each="project : ${allProjects}">
+        <td th:text="${project.projectId}"></td>
+        <td th:text="${project.projectNumber}"></td>
+        <td th:text="${!(project.user == null) ? project.user.firstName : ''}"></td>
+        <td th:text="${!(project.user == null) ? project.user.lastName : ''}"></td>
+
+    </tr>
+    </tbody>
+
+</table>
 
 
 

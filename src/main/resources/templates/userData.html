@@ -16,24 +16,37 @@
         position:absolute;
         top:5px;
         right:5px;
-        border-radius: 30px;
-        background-color:gray;
-        width:150px;
-        height:150px;
+        border-radius: 60px;
+        background-image: url("https://png.pngtree.com/thumb_back/fh260/background/20210222/pngtree-line-white-background-business-image_564042.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        border: 5px solid black;
+        margin: 20px;
+        width:250px;
+        height:90%;
         }
 
         #userDataName{
         position:absolute;
-        top:15px;
-        right:25px;
-        border-radius: 10% / 50%;
-        border-style: solid;
-        border-color: DarkCyan;
-        background-color:white;
+        top:55px;
+        right:100px;
+        font-family: Comic Sans MS, Comic Sans, cursive;
+        font-weight: bold;
         width:100px;
         text-align: center;
         }
 
+        #logoutButton{
+        position:absolute;
+        top:50px;
+        right:100px;
+        }
+
+        body{
+          background-image: url("https://img.freepik.com/free-vector/white-minimal-hexagons-background_79603-1452.jpg?w=1380&t=st=1703696819~exp=1703697419~hmac=15071a1700fa7cb45cd0a66976219684be8de5c633323c28df5c619975a827f8");
+          background-repeat: no-repeat;
+          background-size: cover;
+        }
     </style>
 
 
@@ -50,10 +63,21 @@
 
 </div>
 
-
+<div id="logoutButton">
 <form th:action="@{/logoutPage/}" method="get">
-    <button type="submit" class="btn btn-success" style="font-weight: bold; position: absolute; top: 90px; right: 25px"  >Logout!</button>
+    <button type="submit" class="btn btn-danger" style="font-weight: bold; position: absolute; top: 125px; right: 15px;  "  >Logout!</button>
 </form>
+</div>
+
+
+<form th:action="@{/userPage/}" method="get">
+    <button type="submit" class="btn btn-secondary" style="font-weight: bold; position: absolute; top: 25%; right: 55px; background-color: silver; color: black;"  >Click here to userPage!</button>
+</form>
+
+<form th:action="@{/projectPage/}" method="get">
+    <button type="submit" class="btn btn-secondary" style="font-weight: bold; position: absolute; top: 30%; right: 52px; background-color: silver; color: black;"  >Click here to adminPage!</button>
+</form>
+
 
 
 </body>

@@ -38,7 +38,7 @@
 
 <p th:if="${loginError}" class="error">Wrong user or password</p>
 <form th:action="@{/loginPage/}" method="post">
-    <input type="text" id="username" name="username" autofocus="autofocus" placeholder="Username"  class="form-control" style="width: 250px; position: absolute; top: 35%; left: 45%" /> <br />
+    <input type="email" id="username" name="username" autofocus="autofocus" placeholder="Email"  class="form-control" style="width: 250px; position: absolute; top: 35%; left: 45%" /> <br />
     <input  type="password" id="password" name="password" placeholder="Password" class="form-control" style="width: 250px; position: absolute; top: 42%; left: 45%"/> <br />
     <input type="submit" class="btn btn-primary" style="color: black; font-weight: bold; position: absolute; top: 47%; left: 50%" value="Log in" />
 </form>
