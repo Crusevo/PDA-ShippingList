@@ -9,16 +9,31 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
+
+    <style>
+        body{
+
+background-color: rgba(127, 168, 224, 1);
+background-image: radial-gradient(circle, rgba(127, 168, 224, 1) 0%, rgba(41, 53, 86, 1) 100%);
+
+
+        }
+
+
+    </style>
+
+
+
 </head>
 <body>
 
 <form th:action="@{/logoutPage/}" method="post">
-    <input type="submit" value="Logout" />
+    <button type="submit" class="btn btn-danger" style="font-weight: bold; position: absolute; top: 40%; right: 40%;  color: black; border: solid; border-radius: 25px; border-color: #bbff33;  padding-right: 100px; padding-left: 100px; padding-top: 20px; padding-bottom: 20px; "  >Logout!</button>
 </form>
 
 
 
-<button onclick="goBack()">Go Back</button>
+<button class="btn btn-success" style="font-weight: bold; position: absolute; top: 50%; right: 40%;  color: black; border: solid; border-radius: 25px; border-color: #bbff33; padding-right: 100px; padding-left: 100px; padding-top: 20px; padding-bottom: 20px; " onclick="goBack()">Go Back</button>
 
 <script>
     function goBack() {

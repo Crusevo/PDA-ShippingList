@@ -1,30 +1,133 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Admin Page</title>
+    <title>Project Page</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
+    <link href="https://unpkg.com/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="node_modules/use-bootstrap-select/dist/use-bootstrap-select.min.css" rel="stylesheet">
+
 
     <style>
-        table {
-          border-collapse: collapse;
-          width: 50%;
-        }
 
-        th, td {
-          padding: 8px;
-          text-align: left;
-          border-bottom: 1px solid #ddd;
-        }
-        th{
-        background-color: #04AA6D;
+        .center .inputbox {
+position: relative;
+width: 300px;
+height: 50px;
+margin-bottom: 10px;
+}
+.center .inputbox input {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+border: 2px solid #000;
+outline: none;
+background: none;
+padding: 10px;
+border-radius: 10px;
+font-size: 1.2em;
+}
+.center .inputbox:last-child {
+margin-bottom: 0;
+}
+.center .inputbox span {
+position: absolute;
+top: 14px;
+left: 20px;
+font-size: 1em;
+transition: 0.6s;
+font-family: sans-serif;
+}
+.center .inputbox input:focus ~ span,
+.center .inputbox input:valid ~ span {
+transform: translateX(-13px) translateY(-35px);
+font-size: 1em;
+}
+.center .inputbox [type="button"] {
+width: 50%;
+background: dodgerblue;
+color: #fff;
+border: #fff;
+}
+.center .inputbox:hover [type="button"] {
+background: linear-gradient(45deg, greenyellow, dodgerblue);
+}
 
-        }
-        tr:hover {background-color: light-blue;}
+
+
+
+
+
+
+
+
+
+  table{
+width:100%;
+table-layout: fixed;
+
+}
+.tbl-header{
+background-color: rgba(255,255,255,0.3);
+}
+.tbl-content{
+height:600px;
+overflow-x:auto;
+margin-top: 0px;
+border: 1px solid rgba(255,255,255,0.3);
+}
+th{
+padding: 20px 15px;
+text-align: left;
+font-weight: 500;
+font-size: 25px;
+color: #fff;
+text-transform: uppercase;
+}
+td{
+padding: 15px;
+text-align: left;
+vertical-align:middle;
+font-weight: 300;
+font-size: 16px;
+color: #fff;
+border-bottom: solid 1px rgba(255,255,255,0.1);
+}
+
+
+/* demo styles */
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+body{
+background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+background: linear-gradient(to right, #25c481, #25b7c4);
+font-family: 'Roboto', sans-serif;
+width: 78%;
+
+}
+section{
+margin-top: 220px;
+margin-left: 50px;
+margin-bottom: 50px;
+}
+
+
+/* for custom scrollbar for webkit browser*/
+
+::-webkit-scrollbar {
+width: 6px;
+}
+::-webkit-scrollbar-track {
+-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+::-webkit-scrollbar-thumb {
+-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
     </style>
 
 
@@ -32,42 +135,48 @@
 </head>
 <body>
 
-<h1>Project page</h1>
+
 
 <div th:include="userData"></div>
 
 
+<div class="center">
+<form style="position: absolute; left: 10%; top: 60px;" action="#" th:action="@{/projectPage/}" th:object="${project}"  method="post">
 
-<form action="#" th:action="@{/projectPage/}" th:object="${project}"  method="post">
-
-    <label for="projectNumber">Project Number:</label>
+    <div class="inputbox">
     <input type="text" id="projectNumber" th:field="*{projectNumber}" required />
-    <br/>
-
-    <button type="submit">Submit</button>
+        <span>Insert project number</span>
+    </div>
+    <div class="inputbox">
+    <button style="position: absolute; top: 1px" type="submit" class="btn btn-primary">Submit</button>
+    </div>
 </form>
+</div>
 
 
-<form th:action="@{/addUserToProject/}" method="post">
-    <label for="userId">Select User:</label>
-    <select id="userId" name="userId">
+
+<form style="position: absolute; left: 40%; top: 10px;" th:action="@{/addUserToProject/}" method="post">
+    <label style="font-size: 15px" for="userId">Select User:</label>
+    <select style="width: 200px; height: 30px; font-size: 13px;" class="form-select" id="userId" name="userId">
         <option th:each="user : ${allUsers}" th:value="${user.id}" th:text="${user.firstName}"></option>
     </select>
     <br/>
 
-    <label for="projectId">Select Project:</label>
-    <select id="projectId" name="projectId">
+    <label style="font-size: 15px" for="projectId">Select Project:</label>
+    <select style="width: 200px; height: 30px; font-size: 13px;" class="form-select" id="projectId" name="projectId">
         <option th:each="project : ${allProjects}" th:value="${project.projectId}" th:text="${project.projectNumber}"></option>
     </select>
     <br/>
 
-    <button type="submit">Add User to Project</button>
+    <button class="btn btn-primary" type="submit">Add User to Project</button>
 </form>
 
 
 
-<table>
 
+<section>
+<div class="tbl-header">
+    <table cellpadding="0" cellspacing="0" border="0">
     <thead>
     <tr>
         <th>ID</th>
@@ -76,7 +185,10 @@
         <th>User LastName</th>
     </tr>
     </thead>
-
+    </table>
+</div>
+<div class="tbl-content">
+    <table cellpadding="0" cellspacing="0" border="0">
     <tbody>
     <tr th:each="project : ${allProjects}">
         <td th:text="${project.projectId}"></td>
@@ -86,8 +198,9 @@
 
     </tr>
     </tbody>
-
 </table>
+</div>
+</section>
 
 </body>
 </html>

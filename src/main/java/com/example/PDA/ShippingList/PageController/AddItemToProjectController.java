@@ -19,7 +19,6 @@ public class AddItemToProjectController {
 
     @Autowired
     ProjectRepository projectRepository;
-
     @Autowired
     ItemRepository itemRepository;
 
@@ -47,8 +46,6 @@ public class AddItemToProjectController {
         Long projectId = (Long) model.getAttribute("projectId");
         String projectNumber = (String) model.getAttribute("projectNumber");
 
-
-
         selectedProject.getItemList().add(item);
 
         projectRepository.save(selectedProject);
@@ -57,9 +54,28 @@ public class AddItemToProjectController {
 
         return "redirect:/addItemToProject/?projectId=" + projectId + "&projectNumber=" + projectNumber;
 
+    }
 
+    @PostMapping("/deleteItemFromProject/")
+    public String deleteItemFromProject(@RequestParam Long itemId, @RequestParam int itemIndex, Model model){
+
+        Project selectedProject = (Project) model.getAttribute("selectedProject");
+        Long projectId = (Long) model.getAttribute("projectId");
+        String projectNumber = (String) model.getAttribute("projectNumber");
+
+
+
+        selectedProject.getItemList().remove(itemIndex);
+        projectRepository.save(selectedProject);
+
+        itemRepository.deleteById(itemId);
+        
+
+
+        return "redirect:/addItemToProject/?projectId=" + projectId + "&projectNumber=" + projectNumber;
 
     }
+
 
 
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,62 +10,198 @@
 
 
     <style>
-        table {
-          border-collapse: collapse;
-          width: 50%;
+
+        .addProjectForm{
+        position: absolute;
+        top: 20%;
+        left:50%
         }
 
-        th, td {
-          padding: 8px;
-          text-align: left;
-          border-bottom: 1px solid #ddd;
+        .projectData{
+        position: absolute;
+        top: 10%;
+        left:50%;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+        font-family: "Sansita Swashed", cursive;
         }
-        th{
-        background-color: #04AA6D;
 
-        }
-        tr:hover {background-color: light-blue;}
+        .center .inputbox {
+  position: relative;
+  width: 300px;
+  height: 50px;
+  margin-bottom: 50px;
+}
+.center .inputbox input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border: 2px solid #000;
+  outline: none;
+  background: none;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 1.2em;
+}
+.center .inputbox:last-child {
+  margin-bottom: 0;
+}
+.center .inputbox span {
+  position: absolute;
+  top: 14px;
+  left: 20px;
+  font-size: 1em;
+  transition: 0.6s;
+  font-family: sans-serif;
+}
+.center .inputbox input:focus ~ span,
+.center .inputbox input:valid ~ span {
+  transform: translateX(-13px) translateY(-35px);
+  font-size: 1em;
+}
+.center .inputbox [type="button"] {
+  width: 50%;
+  background: dodgerblue;
+  color: #fff;
+  border: #fff;
+}
+.center .inputbox:hover [type="button"] {
+  background: linear-gradient(45deg, greenyellow, dodgerblue);
+}
+
+
+
+
+
+
+
+
+        table{
+    width:100%;
+    table-layout: fixed;
+  }
+  .tbl-header{
+    background-color: rgba(255,255,255,0.3);
+   }
+  .tbl-content{
+    height:700px;
+    overflow-x:auto;
+    margin-top: 0px;
+    border: 1px solid rgba(255,255,255,0.3);
+  }
+  th{
+    padding: 20px 15px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 25px;
+    color: #fff;
+    text-transform: uppercase;
+  }
+  td{
+    padding: 15px;
+    text-align: left;
+    vertical-align:middle;
+    font-weight: 300;
+    font-size: 16px;
+    color: #fff;
+    border-bottom: solid 1px rgba(255,255,255,0.1);
+  }
+
+
+  /* demo styles */
+
+  @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+  body{
+    background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+    background: linear-gradient(to right, #25c481, #25b7c4);
+    font-family: 'Roboto', sans-serif;
+    width: 48%;
+
+  }
+  section{
+    margin: 50px;
+  }
+
+
+  /* for custom scrollbar for webkit browser*/
+
+  ::-webkit-scrollbar {
+      width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  }
+  ::-webkit-scrollbar-thumb {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  }
     </style>
+
 
 </head>
 <body>
 
 <div th:include="userData"></div>
 
-<p>ID rekordu: <span th:text="${projectId}"></span></p>
-<p>Project Number: <span th:text="${projectNumber}"></span></p>
+
+<div class="center">
+<form class="addProjectForm" action="#" th:action="@{/addItemToProject/}" th:object="${item}" method="post" onsubmit="return refreshPage()">
+
+    <div class="inputbox">
+    <input type="text" id="itemName" th:field="*{itemName}" required />
+        <span>Item name</span>
+    </div>
+
+    <div class="inputbox">
+    <input type="text" id="groupNumber" th:field="*{groupNumber}" required />
+        <span>Group number</span>
+    </div>
+
+    <div class="inputbox">
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
+</div>
+
+<div class="projectData">
+    <p>ID rekordu: <span th:text="${projectId}"></span></p>
+    <p>Project Number: <span th:text="${projectNumber}"></span></p>
+</div>
 
 
-<table>
+<section>
+<div class="tbl-header">
+    <table cellpadding="0" cellspacing="0" border="0">
     <thead>
     <tr>
         <th>Item Name</th>
         <th>Group Number</th>
+        <th>Delete</th>
     </tr>
     </thead>
-
+    </table>
+</div>
+<div class="tbl-content">
+    <table cellpadding="0" cellspacing="0" border="0">
     <tbody>
-    <tr th:each="item : ${itemList}">
+    <tr th:each="item, itemStat : ${itemList}">
         <td th:text="${item.itemName}"></td>
         <td th:text="${item.groupNumber}"></td>
+
+        <td>
+            <form th:action="@{/deleteItemFromProject/}"  method="post">
+                <input type="hidden" th:name="itemId" th:value="${item.itemId}" />
+                <input type="hidden" th:name="itemIndex" th:value="${itemStat.index}" />
+                <button type="submit" class="btn btn-danger" >Delete</button>
+            </form>
+        </td>
+
     </tr>
     </tbody>
 </table>
-
-
-
-<form action="#" th:action="@{/addItemToProject/}" th:object="${item}" method="post" onsubmit="return refreshPage()">
-
-    <label for="itemName">Item name:</label>
-    <input type="text" id="itemName" th:field="*{itemName}" required />
-    <br/>
-
-    <label for="groupNumber">Group number:</label>
-    <input type="text" id="groupNumber" th:field="*{groupNumber}" required />
-    <br/>
-
-    <button type="submit">Submit</button>
-</form>
+</div>
+</section>
 
 
 </body>

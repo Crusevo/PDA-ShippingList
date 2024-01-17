@@ -50,6 +50,7 @@ public class SecurityConfiguration{
                 .requestMatchers("/homePage/").authenticated()
                 .requestMatchers("/userPage/").hasAuthority("USER")
                 .requestMatchers("/projectPage/").hasAuthority("ADMIN")
+                .requestMatchers("/addItemToProject/").hasAuthority("USER")
                 .and()
                 .formLogin()
                 .loginPage("/loginPage/")
