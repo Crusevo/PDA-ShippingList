@@ -32,7 +32,7 @@ public class SignInPageController {
     }
 
     @PostMapping("/signInPage/")
-    public String postSignInPage(@ModelAttribute("user") User user, @RequestParam("role") String roleName){
+    public String postSignInPage(@ModelAttribute("user") User user, @RequestParam("role") String roleName, Model model){
 
 
         Role byRoleName = roleRepository.findByRoleName(roleName);
@@ -42,8 +42,15 @@ public class SignInPageController {
 
         userService.saveUser(user);
 
+        if(!userService.registerOk){
+
+            return "redirect:/registerErrorPage/";
+
+        }
+
         return "redirect:/successPage/";
     }
+
 
 
 }

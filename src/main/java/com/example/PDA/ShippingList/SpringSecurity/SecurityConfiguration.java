@@ -48,6 +48,8 @@ public class SecurityConfiguration{
         http
                 .authorizeRequests()
                 .requestMatchers("/homePage/").authenticated()
+                .requestMatchers("/accessDeniedPage/").authenticated()
+                .requestMatchers("/logoutPage/").authenticated()
                 .requestMatchers("/userPage/").hasAuthority("USER")
                 .requestMatchers("/projectPage/").hasAuthority("ADMIN")
                 .requestMatchers("/addItemToProject/").hasAuthority("USER")

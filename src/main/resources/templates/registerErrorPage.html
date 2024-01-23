@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Register Error Page</title>
+
+    <style>
+
+        #errorPageImage{
+        position: absolute;
+        top:20%;
+        left:28%;
+        }
+
+     h1{
+     position: absolute;
+     top:10%;
+     left:40%;
+     font-family: Apple Chancery, cursive;
+     font-size: 30px;
+     color: black;
+     text-transform: uppercase;
+     font-weight: 300;
+     text-align: center;
+     margin-bottom: 15px;
+     text-shadow: 100px -31px 4px rgba(66, 68, 90, 1);
+
+   }
+
+
+
+
+
+    </style>
+
+</head>
+<body>
+
+<h1>User already exist!</h1>
+
+<img id="errorPageImage" src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*ZvwdIQkolJ2z1MILFrQjOQ.jpeg" width="800" height="400"  alt="Paris">
+
+<form th:action="@{/signInPage/}" method="get">
+    <button type="submit" class="btn btn-danger" style="font-weight: bold; position: absolute; top: 65%; left: 890px"  >Click here to try again!</button>
+</form>
+
+</body>
+</html>

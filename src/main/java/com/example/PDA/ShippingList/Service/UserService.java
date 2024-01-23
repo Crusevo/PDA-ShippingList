@@ -3,7 +3,6 @@ package com.example.PDA.ShippingList.Service;
 import com.example.PDA.ShippingList.Model.Role;
 import com.example.PDA.ShippingList.Model.User;
 import com.example.PDA.ShippingList.Repository.UserRepository;
-import jakarta.persistence.NonUniqueResultException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,15 +14,17 @@ public class UserService {
 
     @Autowired
     UserRepository userRepository;
-
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    public boolean registerOk;
+
 
     public void findAllUsers() {
         userRepository.findAll();
     }
 
-    public void saveUser(User user) {
+    public void saveUser(User user){
 
         if(userRepository.findByEmail(user.getEmail()).isEmpty()){
 
@@ -34,10 +35,17 @@ public class UserService {
 
                 userRepository.saveAndFlush(user);
 
-            }else {
-            System.out.println("User already exist!");
-        }
+                registerOk = true;
 
+
+            }else {
+
+            System.out.println("User already exist!");
+
+            registerOk = false;
+
+
+        }
 
 
     }
